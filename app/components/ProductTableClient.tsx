@@ -7,7 +7,7 @@ import {
   flexRender,
   getCoreRowModel,
 } from "@tanstack/react-table";
-import ReviewsModal from './ReviewsModal';
+import ReviewsModal from "./ReviewsModal";
 import { Product } from "../models/product";
 import {
   Table,
@@ -19,8 +19,6 @@ import {
 } from "@mui/material";
 import styled from "@emotion/styled";
 
-
-
 // Define the props for the component
 interface ProductTableClientProps {
   products: Product[];
@@ -31,7 +29,9 @@ export default function ProductTableClient({
 }: ProductTableClientProps) {
   const [open, setOpen] = useState(false);
   // const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [selectedReviews, setSelectedReviews] = useState<Product['reviews'] | null>(null);
+  const [selectedReviews, setSelectedReviews] = useState<
+    Product["reviews"] | null
+  >(null);
   // Define columns for the react-table
   const columns: ColumnDef<Product>[] = [
     {
@@ -62,7 +62,7 @@ export default function ProductTableClient({
     {
       accessorKey: "discountPercentage",
       header: "Discount Percentage",
-      cell: ({ getValue }) => `$${getValue()}`,
+      cell: ({ getValue }) => `${getValue()}`,
     },
     {
       accessorKey: "rating",
@@ -77,7 +77,7 @@ export default function ProductTableClient({
     {
       accessorKey: "tags",
       header: "Tags",
-      cell: ({ getValue }) => `$${getValue()}`,
+      cell: ({ getValue }) => `${getValue()}`,
     },
     {
       accessorKey: "brand",
@@ -88,7 +88,10 @@ export default function ProductTableClient({
       id: "actions",
       header: "Actions",
       cell: ({ row }) => (
-        <Button variant="outlined" onClick={() => handleViewReviews(row.original.reviews)}>
+        <Button
+          variant="outlined"
+          onClick={() => handleViewReviews(row.original.reviews)}
+        >
           View Reviews
         </Button>
       ),
@@ -102,7 +105,7 @@ export default function ProductTableClient({
     getCoreRowModel: getCoreRowModel(),
   });
 
-  const handleViewReviews = (reviews: Product['reviews']) => {
+  const handleViewReviews = (reviews: Product["reviews"]) => {
     setSelectedReviews(reviews);
     setOpen(true);
   };
@@ -138,7 +141,10 @@ export default function ProductTableClient({
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <TableCell key={header.id}>
-                  {flexRender(header.column.columnDef.header, header.getContext())}
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
                 </TableCell>
               ))}
             </TableRow>
@@ -168,7 +174,6 @@ export default function ProductTableClient({
     </Container>
   );
 }
-
 
 // Styled components
 const Container = styled.div`
